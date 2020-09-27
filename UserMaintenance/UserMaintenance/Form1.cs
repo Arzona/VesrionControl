@@ -64,7 +64,10 @@ namespace UserMaintenance
 
         private void button3_Click(object sender, EventArgs e)
         {
-         
+
+            User user = (User)listBox1.SelectedItem;
+
+            users.Remove(user);
 
         
         }
