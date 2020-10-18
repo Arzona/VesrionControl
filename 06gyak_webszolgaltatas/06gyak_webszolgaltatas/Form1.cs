@@ -17,6 +17,7 @@ namespace _06gyak_webszolgaltatas
     public partial class Form1 : Form
     {
         BindingList<RateData> Rates = new BindingList<RateData>();
+        BindingList<string> Currencies = new BindingList<string>();
 
         public string rslt;
         
@@ -24,7 +25,23 @@ namespace _06gyak_webszolgaltatas
         public Form1()
         {
             InitializeComponent();
-            
+
+            var mnbService2 = new MNBArfolyamServiceSoapClient();
+            var request = new GetCurrenciesRequestBody();
+            var response = mnbService2.GetCurrencies(request);
+            var result = response.GetCurrenciesResult;
+
+            var xml = new XmlDocument();
+            xml.LoadXml(result);
+            foreach (XmlElement element in xml.DocumentElement)
+            {
+                for (int i = 0; i < element.ChildNodes.Count; i++)
+                {
+                    var childElement = (XmlElement)element.ChildNodes[i];
+                    Currencies.Add(childElement.InnerText);
+                }
+            }
+
             RefreshData();
         }
 
@@ -36,6 +53,7 @@ namespace _06gyak_webszolgaltatas
             GetDiagram();
             dataGridView1.DataSource = Rates;
             chartRateData.DataSource = Rates;
+            comboBox1.DataSource = Currencies;
             
         }
 
