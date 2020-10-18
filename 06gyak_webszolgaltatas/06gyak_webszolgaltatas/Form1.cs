@@ -1,4 +1,5 @@
-﻿using _06gyak_webszolgaltatas.MnbServiceReference;
+﻿using _06gyak_webszolgaltatas.Entities;
+using _06gyak_webszolgaltatas.MnbServiceReference;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,10 +14,15 @@ namespace _06gyak_webszolgaltatas
 {
     public partial class Form1 : Form
     {
+        BindingList<RateData> rd = new BindingList<RateData>();
+
+        
+
         public Form1()
         {
             InitializeComponent();
             GetExchangeRates();
+            dataGridView1.DataSource = rd;
         }
 
         private void GetExchangeRates()
