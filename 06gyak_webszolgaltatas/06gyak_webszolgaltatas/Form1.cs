@@ -24,11 +24,19 @@ namespace _06gyak_webszolgaltatas
         public Form1()
         {
             InitializeComponent();
+            
+            RefreshData();
+        }
+
+        private void RefreshData()
+        {
+            Rates.Clear();
             GetExchangeRates();
             GetXml();
             GetDiagram();
             dataGridView1.DataSource = Rates;
             chartRateData.DataSource = Rates;
+            
         }
 
         private void GetDiagram()
@@ -80,9 +88,9 @@ namespace _06gyak_webszolgaltatas
 
             var request = new GetExchangeRatesRequestBody()
             {
-                currencyNames = "EUR",
-                startDate = "2020-01-01",
-                endDate = "2020-06-30"
+                currencyNames = comboBox1.SelectedItem.ToString(),
+                startDate = dateTimePicker1.Value.ToString(),
+                endDate = dateTimePicker2.Value.ToString(),
             };
 
            
@@ -92,6 +100,21 @@ namespace _06gyak_webszolgaltatas
             var result = response.GetExchangeRatesResult;
 
             rslt = result;
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshData();
         }
     }
 }
