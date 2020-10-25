@@ -25,15 +25,15 @@ namespace _07_gyak_mikroszimulacio
             Population = GetPopulation(@"C:\Windows\nép.csv");
             BirthProbabilities = GetBirthProbabilities(@"C:\Windows\születés.csv");
             DeathProbabilities = GetDeathProbabilities(@"C:\Windows\halál.csv");
-            dataGridView1.DataSource = Population;
 
 
-           
+
+
         }
 
         private void Simulation()
         {
-            for (int year = 2005; year <= 2024; year++)
+            for (int year = 2005; year <= numericUpDown1.Value; year++)
             {
                
                 for (int i = 0; i < Population.Count; i++)
@@ -84,9 +84,23 @@ namespace _07_gyak_mikroszimulacio
                 }
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Simulation();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                textBox1.Text = ofd.InitialDirectory + ofd.FileName;
+            }
+        }
     }
 
-        public List<DeathProbability> GetDeathProbabilities(string csvpath)
+    public List<DeathProbability> GetDeathProbabilities(string csvpath)
         {
             List<DeathProbability> deathprobabilities = new List<DeathProbability>();
 
