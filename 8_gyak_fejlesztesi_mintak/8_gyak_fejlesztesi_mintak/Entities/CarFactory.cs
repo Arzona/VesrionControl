@@ -7,13 +7,11 @@ using System.Threading.Tasks;
 
 namespace _8_gyak_fejlesztesi_mintak.Entities
 {
-    public class BallFactory : IToyFactory
+    class CarFactory : IToyFactory
     {
         public Toy CreateNew()
         {
             return new Ball();
         }
-
-        
     }
 }
