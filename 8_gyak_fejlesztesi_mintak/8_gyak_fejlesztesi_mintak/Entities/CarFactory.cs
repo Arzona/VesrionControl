@@ -13,5 +13,10 @@ namespace _8_gyak_fejlesztesi_mintak.Entities
         {
             return new Ball();
         }
+
+        public static implicit operator CarFactory(BallFactory v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
