@@ -16,12 +16,25 @@ namespace _10_gyak_evolucios_algoritmus
         GameController gc = new GameController();
         GameArea ga;
 
+        int populationSize = 100;
+        int nbrOfSteps = 10;
+        int nbrOfStepsIncrement = 10;
+        int generation = 1;
+
         public Form1()
         {
             InitializeComponent();
 
             ga = gc.ActivateDisplay();
             this.Controls.Add(ga);
+
+            for (int i = 0; i < 100; i++)
+            {
+                gc.AddPlayer(nbrOfSteps = 10);
+            }
+
+            gc.Start(true);
+           
         }
     }
 }
